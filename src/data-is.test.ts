@@ -30,3 +30,24 @@ describe("element([data]).is([type])", () => {
         }).toThrow();
     });
 });
+describe("notation data([element]).is([typeString])", () => {
+    it("returns true on valid data type", () => {
+        const data = DataIs.build();
+        data.define.type("number", (x) => typeof x == "number");
+        const testVal = 5;
+        expect(data(testVal).is("number")).toBeTruthy();
+    });
+    it("returns false on invalid data type", () => {
+        const data = DataIs.build();
+        data.define.type("number", (x) => typeof x == "number");
+        const testVal = "string";
+        expect(data(testVal).is("number")).toBeFalsy();
+    });
+    it("throws if data type is not defined", () => {
+        const data = DataIs.build();
+        const testVal = "string";
+        expect(() => {
+            data(testVal).is("number");
+        }).toThrow();
+    });
+});

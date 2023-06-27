@@ -1,8 +1,11 @@
 {
-  "name": "data-is",
-  "version": "1.0.0",
+  "name": "@xerocross/data-is",
+  "version": "1.1.0",
   "description": "A very small utility for defining and validating data types.",
   "main": "dist/data-is.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest",
     "pack": "webpack --mode production",

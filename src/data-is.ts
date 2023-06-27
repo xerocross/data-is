@@ -8,24 +8,32 @@ const UndefinedTypeException = new Error("we-assert: undefined type");
 export default {
     build : function () {
         const types:DataTypes = {};
-        const data = {
-            define : {
-                type : function (typeName:string, vEval :verifyFunction ) :void {
-                    types[typeName] = vEval;
-                }
-            },
-            element (data: any) {
-                return {
-                    is (dataTypeString:string) : boolean {
-                        if (types[dataTypeString]) {
-                            return types[dataTypeString](data);
-                        } else {
-                            throw UndefinedTypeException;
-                        }
+        const data = (element?:any) => {
+            return {
+                is (dataTypeString:string) : boolean {
+                    if (types[dataTypeString]) {
+                        return types[dataTypeString](element);
+                    } else {
+                        throw UndefinedTypeException;
                     }
-
-                };
+                }
+            };
+        };
+        data.define = {
+            type : function (typeName:string, vEval :verifyFunction ) :void {
+                types[typeName] = vEval;
             }
+        };
+        data.element = (element: any) => {
+            return {
+                is (dataTypeString:string) : boolean {
+                    if (types[dataTypeString]) {
+                        return types[dataTypeString](element);
+                    } else {
+                        throw UndefinedTypeException;
+                    }
+                }
+            };
         };
         return data;
     }
