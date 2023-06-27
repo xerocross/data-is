@@ -1,0 +1,45 @@
+{
+    "parser" : "@typescript-eslint/parser",
+    "plugins": ["jest", "@typescript-eslint"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:jest/recommended"
+    ],
+    "ignorePatterns": ["dist/"],
+    "rules": {
+        "space-before-function-paren": ["error", "always"],
+        "comma-spacing": ["error", { "before": false, "after": true }],
+        "space-before-blocks" : "error",
+        "comma-dangle": ["error", "never"],
+        "array-bracket-spacing": ["error", "never", {}],
+        "space-infix-ops": ["error", {"int32Hint": false}],
+        "no-console": "off",
+        "indent": ["error", 4],
+        "key-spacing": ["error", {
+            "beforeColon": true,
+            "afterColon": true,
+            "mode": "strict"
+        }],
+        "semi": ["error", "always"],
+        "@typescript-eslint/no-var-requires" : "off",
+        "@typescript-eslint/no-explicit-any" : "off",
+        "@typescript-eslint/no-empty-function" : "off",
+        "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+        "jest/no-done-callback" : "off"
+    },
+    "globals" : {
+        "NODE_ENV" : "readonly",
+        "expect" : "readonly",
+        "test" : "readonly",
+        "console" : "readonly"
+    },
+    "overrides": [
+        {
+          "files": ["*.js"],
+          "env": {
+            "node": true
+          }
+        }
+      ]
+}
